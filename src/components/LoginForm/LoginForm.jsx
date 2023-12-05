@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import authService from "../../services/auth.services"
 import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../../contexts/auth.context"
 
 
 const LoginForm = () => {
@@ -13,6 +14,7 @@ const LoginForm = () => {
 
     const navigate = useNavigate()
 
+    const { authenticateUser } = useContext(AuthContext)
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -26,8 +28,10 @@ const LoginForm = () => {
         authService
             .login(loginData)
             .then(({ data }) => {
+                console.log("esto--Login----->>>>>>", data)
                 localStorage.setItem('authToken', data.authToken)
-                navigate('/') // *cambia redirect
+                authenticateUser()
+                navigate('/')
             })
             .catch(err => console.log(err))
     }

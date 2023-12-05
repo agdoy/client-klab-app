@@ -10,12 +10,13 @@ class AuthService {
     }
 
     signup(userData) {
-        console.log("llego al servicio de cliente")
         return this.api.post('/signup', userData)
     }
 
     login(userData) {
+        console.log("esto-service------>>>>>>", userData)
         return this.api.post('/login', userData)
+
     }
 
     verify(authToken) {

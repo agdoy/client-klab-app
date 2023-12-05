@@ -1,8 +1,37 @@
-.custom-font {
-    font-size: 30%;
-    font-family: 'Saira Extra Condensed', sans-serif;
-}
-
 .custom-navbar {
     height: 80px;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    position: relative;
+    z-index: 2;
+}
+
+.position-relative.home-container {
+    position: relative;
+    z-index: 1;
+}
+
+.home-container-no-margin {
+    margin-top: -80px;
+}
+
+.btn-grad {
+    background-image: linear-gradient(to right, #4CB8C4 0%, #3CD3AD 51%, #4CB8C4 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background-position 0.5s ease, color 0.5s ease;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    border: none !important;
+}
+
+.btn-grad:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
 }
