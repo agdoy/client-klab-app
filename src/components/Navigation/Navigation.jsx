@@ -16,7 +16,11 @@ function Navigation() {
                 </Nav>
 
                 <Navbar.Collapse className="justify-content-end p-4">
-                    {loggedUser && <Navbar.Text>Bienvenido<a href="#login">{`${loggedUser.firstName}`}</a></Navbar.Text>}
+                    {loggedUser && (
+                        <>
+                            <Navbar.Text>Bienvenido <Link to="/perfil">{`${loggedUser.firstName}`}</Link></Navbar.Text>
+                        </>
+                    )}
                 </Navbar.Collapse>
 
                 {loggedUser ? (

@@ -26,7 +26,7 @@ const SignupForm = () => {
 
         authService
             .signup(signupData)
-            .then(() => navigate('/')) // *cambia redirect
+            .then(() => navigate('/'))
             .catch(err => console.log(err))
     }
     return (

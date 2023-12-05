@@ -11,6 +11,7 @@ function NewDiscoPageForm() {
         name: '',
         email: '',
         description: '',
+        place: '',
         image: null,
     });
     console.log(discoData)
@@ -62,6 +63,11 @@ function NewDiscoPageForm() {
             <Form.Group className="mb-3" controlId="description">
                 <Form.Label>Descripcion del negocio</Form.Label>
                 <Form.Control as="textarea" value={discoData.description} name="description" onChange={handleInputChange} placeholder="Añade una breve descripcion de tu negocio" rows={3} />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="place">
+                <Form.Label>Ubicacion</Form.Label>
+                <Form.Control type="text" value={discoData.place} name="place" onChange={handleInputChange} placeholder="Ciudad del negocio" rows={3} />
             </Form.Group>
 
             <Form.Group controlId="image">

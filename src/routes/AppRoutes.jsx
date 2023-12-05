@@ -4,6 +4,7 @@ import SignupPage from '../pages/Signup/SignupPage';
 import LoginPage from '../pages/Login/LoginPage';
 import NewDiscoPage from '../pages/CreateDisco/NewDiscoPage';
 import DiscoDetailsPage from '../pages/DiscoDetails/DiscoDetailsPage';
+import UserProfilePage from '../pages/UserProfilePage/UserProfilePage';
 
 
 
@@ -14,6 +15,7 @@ const AppRoutes = () => {
 
             <Route path="/registro" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/perfil" element={<UserProfilePage />} />
 
             <Route path="/crearDisco" element={<NewDiscoPage />} />
             <Route path='/discoDetails/:disco_id' element={<DiscoDetailsPage />} />
