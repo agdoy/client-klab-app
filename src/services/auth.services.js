@@ -14,12 +14,13 @@ class AuthService {
     }
 
     login(userData) {
-        console.log("esto-service------>>>>>>", userData)
+        console.log("esto-service------>>>>>>", { userData })
         return this.api.post('/login', userData)
 
     }
 
     verify(authToken) {
+        console.log("este es el malditotoken desde el servicio de VERIFY", authToken)
         return this.api.get('/verify',
             { headers: { Authorization: `Bearer ${authToken}` } }
         )

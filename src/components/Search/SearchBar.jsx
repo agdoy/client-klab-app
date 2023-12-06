@@ -1,4 +1,4 @@
-// SearchBar.jsx
+SearchBar.jsx
 import React, { useState } from 'react';
 import { Form, Container, FormControl, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,18 +19,17 @@ function SearchBar({ className }) {
     };
 
     const getResultQuery = (searchString) => {
-        setSearchText(searchString);
+        setSearchText(searchString)
 
-        if (!searchString) {
-            discoServiceInstance.getAllDisco().then(
-                (res) => setSearchListDisco(res.data)
-            );
-        } else {
-            discoServiceInstance.searchByName(searchString).then(
-                (res) => setSearchListDisco(res.data)
-            );
-        }
-    };
+        const promise = searchString ? discoServiceInstance.searchByName(searchString) : discoServiceInstance.getAllDisco()
+
+        promise
+            .then(({ data }) => {
+                console.log('--------------------------------------', data)
+                setSearchListDisco(data)
+            })
+            .catch(err => console.log(err))
+    }
 
     return (
         <div className={`search-box ${className}`}>
@@ -46,22 +45,27 @@ function SearchBar({ className }) {
                 </Form>
                 {searchText && (
                     <ListGroup className="w-50 mx-auto">
-                        {searchListDisco.map((disco) => (
-                            <ListGroup.Item
-                                key={disco._id}
-                                onMouseOver={() => handleMouseOver(disco._id)}
-                                onMouseOut={handleMouseOut}
-                                className={`d-flex justify-content-between align-items-center ${hoveredItemId === disco._id ? 'bg-primary text-white' : 'bg-white'
-                                    }`}
-                            >
-                                <Link
-                                    to={`/discoDetails/${disco._id}`}
-                                    className={`nav-link w-100 ${hoveredItemId === disco._id ? 'text-white' : ''}`}
+                        {searchListDisco ?
+
+                            searchListDisco.map((disco) => (
+                                <ListGroup.Item
+                                    key={disco._id}
+                                    onMouseOver={() => handleMouseOver(disco._id)}
+                                    onMouseOut={handleMouseOut}
+                                    className={`d-flex justify-content-between align-items-center ${hoveredItemId === disco._id ? 'bg-primary text-white' : 'bg-white'
+                                        }`}
                                 >
-                                    {disco.name}
-                                </Link>
-                            </ListGroup.Item>
-                        ))}
+                                    <Link
+                                        to={`/discoDetails/${disco._id}`}
+                                        className={`nav-link w-100 ${hoveredItemId === disco._id ? 'text-white' : ''}`}
+                                    >
+                                        {disco.name}
+                                    </Link>
+                                </ListGroup.Item>
+                            ))
+                            :
+                            <div></div>
+                        }
                     </ListGroup>
                 )}
             </Container>

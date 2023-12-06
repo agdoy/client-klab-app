@@ -8,14 +8,19 @@ class UserServiceProfile {
         });
 
         this.api.interceptors.request.use((config) => {
+
             const storedToken = localStorage.getItem("authToken");
-            config.headers = { ...(storedToken && { Authorization: `Bearer ${storedToken}` }) };
-            return config;
-        });
+
+            if (storedToken) {
+                config.headers = { Authorization: `Bearer ${storedToken}` }
+            }
+
+            return config
+        })
     }
 
     getUserProfile() {
-        return this.api.get('/getUserProfile');
+        return this.api.get('/perfil');
     }
 
 }

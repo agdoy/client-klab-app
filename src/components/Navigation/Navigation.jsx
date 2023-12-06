@@ -11,9 +11,7 @@ function Navigation() {
         <Navbar bg="transparent" variant="dark" className="custom-navbar">
             <Container>
                 <Navbar.Brand href="/" className="custom-font">KLAB</Navbar.Brand>
-                <Nav className="me-auto">
-                    <Link to={'/crearDisco'} className='nav-link'>CREAR*</Link>
-                </Nav>
+
 
                 <Navbar.Collapse className="justify-content-end p-4">
                     {loggedUser && (
