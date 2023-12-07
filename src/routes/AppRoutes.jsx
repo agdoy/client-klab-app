@@ -5,6 +5,7 @@ import LoginPage from '../pages/Login/LoginPage';
 import NewDiscoPage from '../pages/CreateDisco/NewDiscoPage';
 import DiscoDetailsPage from '../pages/DiscoDetails/DiscoDetailsPage';
 import UserProfilePage from '../pages/UserProfilePage/UserProfilePage';
+import NewPackForm from '../components/NewPackForm/NewPackForm';
 
 
 
@@ -17,6 +18,8 @@ const AppRoutes = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/perfil" element={<UserProfilePage />} />
 
+
+            <Route path="/crearPack" element={<NewPackForm />} />
             <Route path="/crearDisco" element={<NewDiscoPage />} />
             <Route path='/discoDetails/:disco_id' element={<DiscoDetailsPage />} />
         </Routes>

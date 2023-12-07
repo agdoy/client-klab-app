@@ -3,6 +3,7 @@ import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
 import { AuthContext } from '../../contexts/auth.context';
+import NewPackForm from '../NewPackForm/NewPackForm';
 
 function Navigation() {
     const { loggedUser, logout } = useContext(AuthContext);

@@ -7,6 +7,9 @@ import axios from 'axios';
 import uploadServices from '../../services/upload.services';
 
 function NewDiscoPageForm() {
+
+    const navigate = useNavigate();
+
     const [discoData, setDiscoData] = useState({
         name: '',
         email: '',
@@ -14,8 +17,10 @@ function NewDiscoPageForm() {
         place: '',
         image: null,
     });
-    console.log(discoData)
-    const navigate = useNavigate();
+    console.log("----------------------------", discoData)
+
+
+
 
     const handleInputChange = ({ target }) => {
         const { value, name } = target;

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 const TypingEffect = () => {
+
     const [lines, setLines] = useState([
         'ESPERAS',
         'PRISAS',
         'PROBLEMAS',
         'COLAS',
     ]);
+
     const [currentLineIndex, setCurrentLineIndex] = useState(0);
     const [currentText, setCurrentText] = useState('');
     const [showCursor, setShowCursor] = useState(false);

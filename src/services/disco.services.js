@@ -6,6 +6,17 @@ class DiscoService {
         this.api = axios.create({
             baseURL: `http://localhost:5005/api/disco`
         })
+
+        this.api.interceptors.request.use((config) => {
+
+            const storedToken = localStorage.getItem("authToken");
+
+            if (storedToken) {
+                config.headers = { Authorization: `Bearer ${storedToken}` }
+            }
+
+            return config
+        })
     }
 
     getAllDisco() {
