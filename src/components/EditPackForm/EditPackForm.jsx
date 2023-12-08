@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import PackService from '../../services/pack.services';
 import uploadServices from '../../services/upload.services';
 import './EditPackForm.css'
+import { useNavigate } from 'react-router-dom';
 
 
 function EditPackForm({ pack }) {
