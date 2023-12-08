@@ -4,7 +4,7 @@ class UserServiceProfile {
 
     constructor() {
         this.api = axios.create({
-            baseURL: `http://localhost:5005/api/user`
+            baseURL: `https://klab.fly.dev/api/user`
         });
 
         this.api.interceptors.request.use((config) => {

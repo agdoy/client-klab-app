@@ -3,7 +3,7 @@ import axios from "axios";
 class PackService {
     constructor() {
         this.api = axios.create({
-            baseURL: "http://localhost:5005/api/packs",
+            baseURL: "https://klabapp.netlify.app/api/packs",
         });
 
 

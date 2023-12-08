@@ -4,7 +4,7 @@ class DiscoService {
 
     constructor() {
         this.api = axios.create({
-            baseURL: `http://localhost:5005/api/disco`
+            baseURL: `https://klab.fly.dev/api/disco`
         })
 
         this.api.interceptors.request.use((config) => {
