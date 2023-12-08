@@ -3,6 +3,8 @@ import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PackService from '../../services/pack.services';
 import uploadServices from '../../services/upload.services';
+import './EditPackForm.css'
+
 
 function EditPackForm({ pack }) {
 
@@ -10,10 +12,10 @@ function EditPackForm({ pack }) {
 
     const [editedPack, setEditedPack] = useState({
         name: pack.name,
-        description: "",
-        image: "",
-        capacity: 0,
-        price: 0,
+        description: pack.description,
+        image: pack.image,
+        capacity: pack.capacity,
+        price: pack.price,
     })
 
 
@@ -43,6 +45,7 @@ function EditPackForm({ pack }) {
             .updatePack(pack._id, editedPack)
             .then((response) => {
                 console.log("TEST- Pack actualizado:", response.data);
+                window.location.reload();
             })
             .catch((error) => {
                 console.error("TEST- Pack NO actualizado:", error);
@@ -50,7 +53,7 @@ function EditPackForm({ pack }) {
     };
 
     return (
-        <Form onSubmit={handleEditSave}>
+        <Form onSubmit={handleEditSave} className="formulario-negro">
             <Form.Group controlId="name">
                 <Form.Label>Nombre del pack</Form.Label>
                 <Form.Control type="text" value={editedPack.name} name="name" onChange={handleInputChange} />

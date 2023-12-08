@@ -44,15 +44,13 @@ function HomeDiscoPage() {
                     {discos.map((disco) => {
                         if (disco.place === 'Madrid') {
                             return (
-                                <Col key={disco._id}>
-                                    <Card className="text-decoration-none">
-                                        <Link to={`/discos/${disco._id}`}>
+                                <Col key={disco._id} className="mb-3 d-flex">
+                                    <Card className="text-decoration-none flex-grow-1">
+                                        <Link to={`/discoDetails/${disco._id}`}>
                                             <Card.Img variant="top" src={disco.image} />
                                         </Link>
-                                        <Card.Body>
-                                            <Link to={`/discoDetails/${disco._id}`}>
-                                                <Card.Title>{disco.name}</Card.Title>
-                                            </Link>
+                                        <Card.Body className="d-flex flex-column">
+                                            <Card.Title>{disco.name}</Card.Title>
                                             <Card.Text>{disco.description}</Card.Text>
                                         </Card.Body>
                                     </Card>
@@ -63,40 +61,21 @@ function HomeDiscoPage() {
                     })}
                 </Row>
             </Container>
+
             <Container>
                 <h1 className="mb-4">Reservados en Barcelona</h1>
                 <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-4">
                     {discos
                         .filter(disco => disco.place === 'Barcelona')
                         .map(filteredDisco => (
-                            <Col key={filteredDisco._id}>
-                                <Card>
-                                    <Card.Img variant="top" src={filteredDisco.image} />
-                                    <Card.Body>
+                            <Col key={filteredDisco._id} className="mb-3 d-flex">
+                                <Card className="text-decoration-none flex-grow-1">
+                                    <Link to={`/discoDetails/${filteredDisco._id}`}>
+                                        <Card.Img variant="top" src={filteredDisco.image} />
+                                    </Link>
+                                    <Card.Body className="d-flex flex-column">
                                         <Card.Title>{filteredDisco.name}</Card.Title>
-                                        <Card.Text>
-                                            {filteredDisco.description}
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
-                </Row>
-            </Container>
-            <Container>
-                <h1 className="mb-4">Reservados en Estepona</h1>
-                <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-4">
-                    {discos
-                        .filter(disco => disco.place === 'Estepona')
-                        .map(filteredDisco => (
-                            <Col key={filteredDisco._id}>
-                                <Card>
-                                    <Card.Img variant="top" src={filteredDisco.image} />
-                                    <Card.Body>
-                                        <Card.Title>{filteredDisco.name}</Card.Title>
-                                        <Card.Text>
-                                            {filteredDisco.description}
-                                        </Card.Text>
+                                        <Card.Text>{filteredDisco.description}</Card.Text>
                                     </Card.Body>
                                 </Card>
                             </Col>

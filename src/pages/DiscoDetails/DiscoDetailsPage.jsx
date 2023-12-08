@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
-import discoServiceInstance from "../../services/disco.services"
-import { Button, Container, Modal, Card, ButtonGroup, Row, Col } from 'react-bootstrap'
+import { useParams } from "react-router-dom"
+import { Button, Container, Modal, Card, ButtonGroup, Row, Col, Image } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NewPackForm from "../../components/NewPackForm/NewPackForm"
-import { useParams } from "react-router-dom"
 import EditPackForm from "../../components/EditPackForm/EditPackForm"
+import discoServiceInstance from "../../services/disco.services"
 import packServiceInstance from "../../services/pack.services"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart, faUser, faInfoCircle, faCocktail, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 
 function DiscoDetailsPage() {
     const { disco_id } = useParams()
@@ -33,52 +35,79 @@ function DiscoDetailsPage() {
         setEditMode(false)
     }
 
-
     const handleShow = () => setShow(true)
 
     const handleEditShow = ({ elm }) => {
         setSelectedPackId(elm)
         setShow(true)
         setEditMode(true)
-
     }
 
     const deletetPack = (packId) => {
-        console.log(packId)
-
         packServiceInstance
             .deletePack(packId._id)
             .then(() => {
-                // setDiscoDetails(data)
+                loadDiscoDetails()
             })
             .catch((err) => console.log(err))
     }
 
     return (
-        <div>
-            {
-                discoDetails
-                    ? (
-                        <div>
-                            <h1>{discoDetails.disco.name}</h1>
-                            <p>Email: {discoDetails.disco.email}</p>
-                            <p>Description: {discoDetails.disco.description}</p>
-                            <p>owner: {discoDetails?.disco?.owner?.firstName}</p>
+        <Container className="mt-5">
+            {discoDetails ? (
+                <Row className="justify-content-center">
+                    <Col md={8} className="text-center">
+                        <Image
+                            src={discoDetails.disco.image}
+                            roundedCircle
+                            className="mb-3"
+                            style={{ width: '150px', height: '150px', objectFit: 'cover' }}
+                        />
+                        <h2>{discoDetails.disco.name}</h2>
+                        <p>Email: {discoDetails.disco.email}</p>
+                        <p>Dirección: {discoDetails.disco.address}</p>
 
-                            <Button variant="outline-light" className="me-2 btn-grad" onClick={handleShow}>
-                                CrearPack
-                            </Button>
-                            <h1>Packs</h1>
+                        <Button variant="outline-light" className="me-2 btn-grad" onClick={handleShow}>
+                            Crear Pack
+                        </Button>
 
+                        <h1>Packs</h1>
+                        <Row>
                             {discoDetails.packs.map((elm) => (
-                                <div key={elm.id}>
-                                    <Card style={{ width: '18rem' }}>
-                                        <Card.Img variant="top" src={elm.image} alt={elm.name} />
-                                        <Card.Body>
-                                            <Card.Title>{elm.name}</Card.Title>
-                                            <Card.Text>{elm.description}</Card.Text>
-                                            <Button variant="primary">Detalles</Button>
+                                <Col md={4} key={elm.id} className="mb-4">
+                                    <Card style={{ height: '100%' }}>
+                                        <Card.Img
+                                            variant="top"
+                                            src={elm.image}
+                                            alt={elm.name}
+                                            style={{ height: '200px', objectFit: 'contain' }}
+                                        />
+                                        <Card.Body style={{ minHeight: '200px' }}>
+                                            <div className="border border-dark rounded p-3"> {/* Aplicamos las clases de Bootstrap para el borde y el borde redondeado a esta sección */}
+                                                <div>
+                                                    <FontAwesomeIcon icon={faInfoCircle} />
+                                                </div>
+                                                <hr />
+                                                <div>
+                                                    <h4>{elm.name}</h4>
+                                                </div>
+                                                <div>
+                                                    <FontAwesomeIcon icon={faCocktail} /> {elm.description}
+                                                </div>
+                                                <div>
+                                                    <FontAwesomeIcon icon={faUser} /> {elm.capacity} personas
+                                                </div>
+                                                <div>
+                                                    <FontAwesomeIcon icon={faMoneyBill} /> {elm.price}€
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <Button variant="success">
+                                                <FontAwesomeIcon icon={faShoppingCart} /> Comprar Pack
+                                            </Button>
                                             <Row className="mt-2">
+                                                <br />
+
                                                 <Col>
                                                     <ButtonGroup>
                                                         <Button variant="outline-warning" onClick={() => handleEditShow({ elm })}>
@@ -89,52 +118,30 @@ function DiscoDetailsPage() {
                                                         </Button>
                                                     </ButtonGroup>
                                                 </Col>
-
-                                                <Col>
-
-                                                </Col>
-
-
                                             </Row>
                                         </Card.Body>
                                     </Card>
-                                </div>
+                                </Col>
                             ))}
+                        </Row>
 
-                            <Modal show={show} onHide={handleClose}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>ID del Paquete: </Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    {editMode ? (
-                                        <EditPackForm pack={selectedPackId} />
-                                    ) : (
-                                        <NewPackForm discId={discoDetails.disco._id} closeModalCreate={setShow} />
-                                    )}
-                                </Modal.Body>
-                            </Modal>
-
-                            {/* //onHide={handleClose} */}
-                            {/* <Modal show={show} >
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Modal heading</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    {editMode ? (
-                                        <EditPackForm editedPack={editedPack} setEditedPack={setEditedPack} />
-                                    ) : (
-                                        <NewPackForm discId={discoDetails.disco._id} closeModalCreate={setShow} />
-                                    )}
-                                </Modal.Body>
-                            </Modal> */}
-                        </div>
-                    )
-                    : <p>CARGANDO DATOS...</p>
-            }
-        </div>
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Editar Pack</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                {editMode ? (
+                                    <EditPackForm pack={selectedPackId} />
+                                ) : (
+                                    <NewPackForm discId={discoDetails.disco._id} closeModalCreate={setShow} />
+                                )}
+                            </Modal.Body>
+                        </Modal>
+                    </Col>
+                </Row>
+            ) : <p>CARGANDO DATOS...</p>}
+        </Container>
     )
 }
 
-export default DiscoDetailsPage
-
-// haz que en el modal  salga el id en el titutlo
+export default DiscoDetailsPage;

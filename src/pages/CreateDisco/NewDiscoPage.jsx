@@ -1,27 +1,46 @@
-import { Container, Row, Col } from 'react-bootstrap'
-import NewDiscoPageForm from '../../components/NewDiscoForm/NewDiscoPageForm'
+import React from 'react';
+import { Container, Col } from 'react-bootstrap';
+import NewDiscoPageForm from '../../components/NewDiscoForm/NewDiscoPageForm';
+import backgroundImage from '../../assets/profile-register-background.webp';
+
+const backgroundStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    minHeight: '100vh',
+    marginTop: '-80px',
+    zIndex: '0',
+};
+
+const containerStyle = {
+    paddingTop: '80px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+};
+
+const headingStyle = {
+    marginBottom: '40px',
+};
+
 
 const NewDiscoPage = () => {
-
     return (
-
-        <Container>
-
-            <Row>
-
-                <Col md={{ offset: 3, span: 6 }}>
-
-                    <h1>Nueva Disco</h1>
-
-                    <hr />
+        <div style={backgroundStyle}>
+            <Container style={containerStyle}>
+                <Col>
+                    <br />
+                    <br />
+                    <h1 style={headingStyle}>Nueva Disco</h1>
                     <NewDiscoPageForm />
-                    <new />
-
+                    <br />
+                    <br />
                 </Col>
-            </Row>
+            </Container>
+        </div>
+    );
+};
 
-        </Container>
-    )
-}
+export default NewDiscoPage;
 
-export default NewDiscoPage

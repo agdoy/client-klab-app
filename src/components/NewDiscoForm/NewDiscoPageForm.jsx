@@ -16,6 +16,7 @@ function NewDiscoPageForm() {
         description: '',
         place: '',
         image: null,
+        address: '',
     });
     console.log("----------------------------", discoData)
 
@@ -40,14 +41,15 @@ function NewDiscoPageForm() {
     };
 
     const handleDiscoSubmit = (e) => {
-
         e.preventDefault();
 
         discoService
             .saveNewDisco(discoData)
-            .then(response => console.log("lugar creado con exito!", response.data))
-            .catch(err => console.log(err))
-
+            .then(response => {
+                console.log("Lugar creado con éxito!", response.data);
+                navigate('/');
+            })
+            .catch(err => console.log(err));
     };
 
     return (
@@ -71,8 +73,13 @@ function NewDiscoPageForm() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="place">
-                <Form.Label>Ubicacion</Form.Label>
+                <Form.Label>Ciudad</Form.Label>
                 <Form.Control type="text" value={discoData.place} name="place" onChange={handleInputChange} placeholder="Ciudad del negocio" rows={3} />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="address">
+                <Form.Label>Direccion</Form.Label>
+                <Form.Control type="text" value={discoData.address} name="address" onChange={handleInputChange} placeholder="Dirección del negocio" rows={3} />
             </Form.Group>
 
             <Form.Group controlId="image">

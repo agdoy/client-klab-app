@@ -29,9 +29,9 @@ function UserProfilePage() {
             <h1>Página de Perfil de Usuario</h1>
             <div className="d-flex justify-content-end mr-2">
                 <Dropdown>
-                    <Dropdown.Toggle variant="success" className="me-2 btn-grad" id="dropdown-basic">
+                    {/* <Dropdown.Toggle variant="success" className="me-2 btn-grad" id="dropdown-basic">
                         ♡ Mis favoritos
-                    </Dropdown.Toggle>
+                    </Dropdown.Toggle> */}
 
                     <Dropdown.Menu>
                         <Dropdown.Item href="#/action-1">Action</Dropdown.Item>

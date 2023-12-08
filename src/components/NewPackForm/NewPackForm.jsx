@@ -44,7 +44,7 @@ function NewPackForm({ discId, closeModalCreate }) {
         PackService
             .saveNewPack(updatedPacksData)
             .then(response => {
-                closeModalCreate(false)
+                window.location.reload()
                 console.log("TEST: PACK CREADO", response.data);
             })
             .catch(err => console.log(err))
