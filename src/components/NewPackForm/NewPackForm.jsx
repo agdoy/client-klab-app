@@ -65,7 +65,7 @@ function NewPackForm({ discId, closeModalCreate }) {
 
             <Form.Group className="mb-3" controlId="capacity">
                 <Form.Label>Capacidad</Form.Label>
-                <Form.Control as="textarea" value={packsData.capacity} name="capacity" onChange={handleInputChange} placeholder="¿Para cuantos es valido esta oferta?" rows={3} />
+                <Form.Control type="text" value={packsData.capacity} name="capacity" onChange={handleInputChange} placeholder="¿Para cuantos es valido esta oferta?" rows={3} />
                 <Form.Text className="text-muted">
                     Informa para cuantas personas va dirigida la oferta
                 </Form.Text>
