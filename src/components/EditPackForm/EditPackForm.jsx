@@ -37,15 +37,16 @@ function EditPackForm({ pack }) {
             .catch(err => console.log(err))
     };
 
+    const navigate = useNavigate();
 
     const handleEditSave = (e) => {
         e.preventDefault();
 
         PackService
             .updatePack(pack._id, editedPack)
-            .then((response) => {
-                console.log("TEST- Pack actualizado:", response.data);
-                window.location.reload();
+            .then(response => {
+                navigate('/')
+                console.log("TEST: PACK editado", response.data);
             })
             .catch((error) => {
                 console.error("TEST- Pack NO actualizado:", error);
