@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import HomeDiscoPage from '../pages/Homepage/HomeDiscoPage'
+import HomeDiscoPage from '../pages/homepage/HomeDiscoPage'
 import SignupPage from '../pages/Signup/SignupPage';
 import LoginPage from '../pages/Login/LoginPage';
 import NewDiscoPage from '../pages/CreateDisco/NewDiscoPage';
